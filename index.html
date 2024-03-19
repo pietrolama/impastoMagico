@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea il tuo impasto per Pizza</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Crea il tuo impasto per la pizza</h1>
+        <div class="form">
+            <!-- Aggiunta del checkbox -->
+            <label class="checkbox-container" for="usa_teglia">Fatta in teglia
+              <input type="checkbox" id="usa_teglia">
+              <span class="checkmark"></span>
+            </label>
+
+
+            <label for="tipo_impasto">Tipo di Impasto:</label>
+            <select id="tipo_impasto" onchange="toggleSections()">
+                <option value="diretto">Metodo Diretto</option>
+                <option value="biga">Biga</option>
+                <option value="poolish">Poolish</option>
+                <option value="biga_poolish">Biga + Poolish</option>
+            </select>
+            <div id="sezione_diretto" style="display: none;">
+                <h2>Metodo Diretto</h2>
+                <label for="peso_panetto_diretto">Peso di un singolo panetto (g):</label>
+                <input type="number" id="peso_panetto_diretto">
+                <label for="idratazione_totale_diretto">Idratazione totale dell'impasto (%):</label>
+                <input type="number" id="idratazione_totale_diretto" name="idratazione" data-toggle="tooltip" data-placement="right">
+                <label for="num_panetti_diretto">Numero di panetti:</label>
+                <input type="number" id="num_panetti_diretto">
+                <label for="tempoLiev">Tempo di lievitazione:</label>
+                <input type="number" id="tempoLiev">
+                <label for="tempoLievFrig">Tempo in frigo:</label>
+                <input type="number" id="tempoLievFrig">
+                <label for="tempAmb">Temperatura ambiente:</label>
+                <input type="number" id="tempAmb">
+                <label for="w">Forza della farina (w):</label>
+                <input type="number" id="w">
+                <p><strong>Diretto:</strong> L'impasto diretto è il metodo più semplice per preparare la pizza. Si impastano tutti gli ingredienti insieme e si lascia lievitare l'impasto per un periodo di tempo variabile, a seconda della temperatura e del tipo di farina utilizzata. Questo metodo è ideale per chi ha poco tempo a disposizione o per chi desidera una pizza più semplice e rustica.<br><br>
+                Vantaggi:<br>
+                Semplicità e velocità di preparazione<br>
+                Non richiede tempi di lievitazione lunghi<br>
+                Ideale per pizze rustiche<br><br>
+                Svantaggi:<br>
+                sapore meno complesso rispetto ad altri metodi<br>
+                alveolatura meno sviluppata</p>
+            </div>
+            <div id="sezione_biga" style="display: none;">
+                <h2>Biga</h2>
+                <label for="peso_panetto_biga">Peso di un singolo panetto (g):</label>
+                <input type="number" id="peso_panetto_biga">
+                <label for="idratazione_totale_biga">Idratazione totale dell'impasto (%):</label>
+                <input type="number" id="idratazione_totale_biga">
+                <label for="percentuale_biga">Percentuale di Biga sull'impasto totale (%):</label>
+                <input type="number" id="percentuale_biga">
+                <label for="num_panetti_biga">Numero di panetti:</label>
+                <input type="number" id="num_panetti_biga">
+                <p><strong>Biga:</strong> La biga è un pre-impasto di farina e acqua che viene fatto lievitare per alcune ore prima di essere aggiunto all'impasto finale. Questo metodo conferisce alla pizza un sapore più complesso e una migliore alveolatura.<br><br>
+                Vantaggi:<br>
+                Sapore più complesso e aromatico<br>
+                Alveolatura più sviluppata<br>
+                Migliore digeribilità<br><br>
+                Svantaggi:<br>
+                Richiede tempi di preparazione più lunghi<br>
+                Più complesso da realizzare</p>
+            </div>
+            <div id="sezione_poolish" style="display: none;">
+                <h2>Poolish</h2>
+                <label for="peso_panetto_poolish">Peso di un singolo panetto (g):</label>
+                <input type="number" id="peso_panetto_poolish">
+                <label for="idratazione_totale_poolish">Idratazione totale dell'impasto (%):</label>
+                <input type="number" id="idratazione_totale_poolish">
+                <label for="percentuale_poolish">Percentuale di Poolish sull'impasto totale (%):</label>
+                <input type="number" id="percentuale_poolish">
+                <label for="num_panetti_poolish">Numero di panetti:</label>
+                <input type="number" id="num_panetti_poolish">
+                <p><strong>Poolish:</strong> Il poolish è un pre-impasto di farina, acqua e lievito che viene fatto lievitare per un periodo di tempo variabile, a seconda della temperatura e del tipo di farina utilizzata. Questo metodo conferisce alla pizza una maggiore leggerezza e morbidezza.<br><br>
+                Vantaggi:<br>
+                Pizza più leggera e morbida<br>
+                Alveolatura più regolare<br>
+                Migliore croccantezza<br><br>
+                Svantaggi:<br>
+                Sapore meno intenso rispetto alla biga<br>
+                Richiede tempi di preparazione più lunghi</p>
+            </div>
+            <div id="sezione_biga_poolish" style="display: none;">
+                <h2>Biga + Poolish</h2>
+                <label for="peso_panetto_biga_poolish">Peso di un singolo panetto (g):</label>
+                <input type="number" id="peso_panetto_biga_poolish">
+                <label for="idratazione_totale_biga_poolish">Idratazione totale dell'impasto (%):</label>
+                <input type="number" id="idratazione_totale_biga_poolish">
+                <label for="percentuale_biga_bp">Percentuale di Biga sull'impasto totale (%):</label>
+                <input type="number" id="percentuale_biga_bp">
+                <label for="percentuale_poolish_bp">Percentuale di Poolish sull'impasto totale (%):</label>
+                <input type="number" id="percentuale_poolish_bp">
+                <label for="num_panetti_biga_poolish">Numero di panetti:</label>
+                <input type="number" id="num_panetti_biga_poolish">
+                <p><strong>Biga + Poolish:</strong> La combinazione di biga e poolish è un metodo avanzato che consente di ottenere una pizza con le migliori caratteristiche di entrambi i metodi. Questo metodo richiede però una certa esperienza e manualità.<br><br>
+                Vantaggi:<br>
+                Pizza con sapore complesso<br>
+                Alveolatura sviluppata<br> 
+                Morbidezza<br>
+                Ottima digeribilità<br><br>
+                Svantaggi:<br>
+                Richiede tempi di preparazione lunghi<br>
+                Più complesso da realizzare</p>
+            </div>
+            <button onclick="calcola()">Calcola</button>
+        </div>
+        <div id="risultati" class="risultati"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

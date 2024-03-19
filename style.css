@@ -1,0 +1,213 @@
+/* Reset del box model */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Stile generale del body */
+body {
+    /* altre proprietà */
+    background-image: url('https://source.unsplash.com/featured/?pizza');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Stile per il contenitore principale */
+.container {
+    max-width: 600px;
+    background-color: #fff; /* Sfondo bianco per leggibilità */
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 1rem; /* Aggiunge spazio intorno al container */
+}
+
+/* Stile per i pulsanti interattivi */
+button {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block; /* Fa sì che il pulsante si espanda a tutta la larghezza del contenitore */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #e55347;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Stile per i campi di input */
+input[type="number"] {
+    border: 2px solid #ff6347;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 1rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+    margin-bottom: 10px;
+    width: calc(100% - 22px); /* Calcola la larghezza corretta dopo il padding e il bordo */
+}
+
+input[type="number"]:focus {
+    border-color: #e55347;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Aggiustamenti per label e altri elementi */
+label {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+h1, h2, p {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+}
+
+p {
+    color: #333333; /* Colore del testo per leggibilità */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 5px; /* Aggiungi spazio sotto il testo */
+    line-height: 1.6; /* Spazio verticale tra le righe di testo */
+    font-size: 1rem; /* Dimensione del testo standard */
+}
+
+/* Stile per i menù a tendina */
+select {
+    border: 2px solid #ff6347; /* Bordo colorato per abbinarsi agli altri input */
+    border-radius: 20px; /* Bordo arrotondato */
+    padding: 10px 15px; /* Padding per allontanare il testo dai bordi */
+    font-size: 1rem; /* Dimensione del testo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leggera ombra per profondità */
+    background-color: #fff; /* Sfondo bianco */
+    cursor: pointer; /* Cambia il cursore per indicare che è un elemento selezionabile */
+    width: 100%; /* Si espande per occupare l'intera larghezza del contenitore */
+    -moz-appearance: none; /* Rimuove lo stile predefinito in Firefox */
+    -webkit-appearance: none; /* Rimuove lo stile predefinito in Chrome e Safari */
+    appearance: none; /* Rimuove lo stile predefinito per i browser moderni */
+    position: relative; /* Permette il posizionamento assoluto dell'icona a freccia */
+}
+
+/* Stile per l'icona a freccia del menu a tendina (puoi aggiungere un'immagine di un'icona a freccia se preferisci) */
+.select-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Impedisce che l'icona riceva eventi di click, permettendo che il click avvenga sul select stesso */
+}
+
+/* Aggiunta dell'icona a freccia con pseudo-elemento */
+select::after {
+    content: '\25BC'; /* Codice unicode per la freccia verso il basso */
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Impedisce che l'icona riceva eventi di click, permettendo che il click avvenga sul select stesso */
+    color: #ff6347; /* Colore dell'icona abbinato al bordo */
+    font-size: 0.8rem; /* Dimensione ridotta rispetto al testo nel select */
+}
+
+/* Modifica lo stile del select quando si trova in stato :focus */
+select:focus {
+    border-color: #e55347; /* Cambia il colore del bordo quando è in focus */
+    outline: none; /* Rimuove l'outline di default per mantenere la coerenza dello stile */
+}
+
+/* Rimuove lo stile delle frecce in IE */
+select::-ms-expand {
+    display: none;
+}
+
+/* Questi stili aggiuntivi gestiscono l'aspetto dei select disabilitati */
+select:disabled {
+    background-color: #f5f5f5;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Stile per il contenitore della checkbox */
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px; /* Spazio a sinistra della checkbox per il segno */
+  margin-bottom: 12px; /* Distanza tra le checkbox */
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Nascondi la checkbox nativa */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Stile per il segno della checkbox personalizzato */
+.checkmark {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px; /* Aggiunge spazio tra il segno e il testo */
+}
+
+/* Stile per il segno della checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee; /* Colore di sfondo del segno */
+  border: 2px solid #ff6347; /* Colore del bordo del segno */
+  border-radius: 5px;
+}
+
+/* Stile per il segno della checkbox quando è selezionato */
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #ff6347; /* Cambia il colore di sfondo del segno quando è selezionato */
+}
+
+/* Stile per la spunta all'interno del segno */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Mostra la spunta quando la checkbox è selezionata */
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Stile della spunta */
+.checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

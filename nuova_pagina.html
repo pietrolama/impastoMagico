@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risultati Calcolatore di Impasto per Pizza</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include jsPDF tramite CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
+    <!-- Include html2canvas tramite CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <button onclick="tornaIndietro()">Torna Indietro</button>
+        <button onclick="generaPDF()">Salva in PDF</button>
+        <h1>RICETTA</h1>
+        <div id="risultati" class="risultati">
+            <!-- Qui verranno visualizzati i risultati -->
+        </div>
+    </div>
+
+
+
+    <script>
+        // Funzione per tornare alla pagina precedente
+        function tornaIndietro() {
+            window.history.back();
+        }
+
+        // Recupera i risultati dal localStorage e li visualizza
+        document.addEventListener("DOMContentLoaded", function() {
+            var risultati = JSON.parse(localStorage.getItem("risultati"));
+            var risultatiDiv = document.getElementById("risultati");
+            if (risultati) {
+                risultatiDiv.innerHTML = risultati;
+            } else {
+                risultatiDiv.innerHTML = "Nessun risultato disponibile.";
+            }
+        });
+
+function generaPDF() {
+    var doc = new jsPDF();
+    var testo = document.getElementById("risultati").innerText;
+    var righe = doc.splitTextToSize(testo, 180); // Adatta per la larghezza di A4
+
+    // Imposta il titolo con dimensione e grassetto
+    doc.setFontSize(22); // Dimensione del font per il titolo
+    doc.setFont("helvetica", "bold"); // Imposta il font bold
+
+    // Centra il titolo in cima alla pagina
+    var larghezzaPagina = doc.internal.pageSize.getWidth();
+    var titolo = "Ricetta";
+    
+    // Il metodo 'center' per l'allineamento è stato mal interpretato nella risposta precedente.
+    // Utilizziamo questo approccio per centrare il titolo.
+    doc.text(titolo, larghezzaPagina / 2, 15, null, null, 'center');
+
+    // Reset delle impostazioni del font per il testo successivo
+    doc.setFontSize(12); // Dimensione normale del font per il corpo del testo
+    doc.setFont("helvetica", "normal"); // Reset del font a normale
+
+    // Impostazioni per il corpo del testo
+    var margineSinistro = 10;
+    var margineSuperiore = 30; // Aumentato per fare spazio all'intestazione
+    var altezzaRiga = 7;
+    var paginaAltezza = doc.internal.pageSize.getHeight() - 20;
+
+    // Gestione delle interruzioni di pagina
+    var posizioneY = margineSuperiore;
+
+    righe.forEach(function(riga) {
+        if (posizioneY > paginaAltezza) {
+            doc.addPage();
+            posizioneY = margineSuperiore; // Reset della posizione Y per la nuova pagina
+        }
+        doc.text(riga, margineSinistro, posizioneY);
+        posizioneY += altezzaRiga;
+    });
+
+    // Salva il documento PDF
+    doc.save('ricetta.pdf');
+}
+
+
+
+
+    </script>
+</body>
+</html>
